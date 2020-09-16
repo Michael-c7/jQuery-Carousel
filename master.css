@@ -1,3 +1,37 @@
-.blue {
-    color:blue;
+/*default / base styling*/
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    padding:0;
+    margin:0;
+}
+
+ul {
+    list-style:none;
+}
+
+/*
+object-fit: cover;
+    object-position: center;
+*/
+
+
+.container {
+    width:100vw;
+    height:100vh;
+    background:pink;
+    
+}
+
+.carousel-container {
+    position: relative;
+    width:50%;
+    height:50%;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+    background:aquamarine;
 }
