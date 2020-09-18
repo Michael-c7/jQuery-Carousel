@@ -11,9 +11,9 @@ let nextBtn = document.querySelector('.next-btn');
 let currentSlide = document.querySelector('.current-slide');
 let currentSlideWidth = currentSlide.getBoundingClientRect().width;
 
-let nextSlide = currentSlide.nextElementSibling;
+// let nextSlide = currentSlide.nextElementSibling;
+// let previousSlide = currentSlide.previousElementSibling;
 
-let previousSlide = currentSlide.previousElementSibling;
 let digitAndDotRegex = /[\d.]+/g;
 let widthArr = [];
 
@@ -28,21 +28,35 @@ function positionSlides(amountOfSlides = 0, currentSlideWidth) {
 
 positionSlides(allSlides.length, currentSlideWidth);
 
+console.log(widthArr)
+
+
 let init = 0;
 
+
+// console.log(slideWidth)
+
 function changeToPreviousSlide(event) {
-    let previousSlideWidth = -widthArr[init];
+
+    // let previousSlideWidth = -widthArr[init];
+    let slideWidth = -widthArr[init];
+
     // change slide
-    slides.style.transform = `translateX(${previousSlideWidth}px)`;
-    
+    slides.style.transform = `translateX(${slideWidth}px)`;
+    init--;
     // add to the init value
-    if(isNaN(previousSlideWidth) === true) {
+    if(isNaN(slideWidth) === true || isNaN(init) === true) {
         init+=0;
     } else {
         init-=1;
     }
-    
-    console.log(previousSlideWidth);
+
+    if(slideWidth === -1) {
+        init === 0;
+    }
+
+
+    console.log(slideWidth);
     
     console.log(init);   
 }
@@ -50,29 +64,33 @@ function changeToPreviousSlide(event) {
 
 
 
-
-
-
 function changeToNextSlide(event) {
     // let nextSlideValue = parseFloat(nextSlide.style.transform.match(digitAndDotRegex));
-    let nextSlideWidth = -widthArr[init];
+    // let nextSlideWidth = -widthArr[init];
+    let slideWidth = -widthArr[init];
+
     // change slide
-    slides.style.transform = `translateX(${nextSlideWidth}px)`;
+    slides.style.transform = `translateX(${slideWidth}px)`;
     
     // add to the init value
-    if(isNaN(nextSlideWidth) === true) {
+    if(isNaN(slideWidth) === true || isNaN(init) === true) {
         init+=0;
     } else {
         init+=1;
     }
+
+    if(init === slideWidth ) {
+        init === 0;
+    }
     
-    console.log(nextSlideWidth);
+    console.log(slideWidth);
     
     console.log(init);   
 }       
 
 
 
+/*Event Listener */
 previousBtn.addEventListener('click', changeToPreviousSlide);
 nextBtn.addEventListener('click', changeToNextSlide);
 
@@ -80,25 +98,20 @@ nextBtn.addEventListener('click', changeToNextSlide);
 
 
 
-/* STEPS
-OR get transform: translateX(2714px); from next slides html
-and use that
+/* 
+Known Bugs:(most severe to least severe)
 
-Current problem:
-- 
+1. previous button broken(delayed)
+2. when you get to the very end
+of the previous slide & the next slide
+clicking buttons no longer move the slides
+
 
 ---
+STEPS
 1. position slides left to right X
-- 1.1 : position absolute, on all the slides X
-- 1.2 : position slide based on width of X
-previous slide times its number(eg: 2nd slide) X
-- 1.3 Hide all slides that are not the current slide from view X
 
 2. get next button working X
-- 2.1 : get current slide + NextElement X 
-- 2.2 : transform:translate(by currentImage width) X
-- 2.3 : remove current-slide all images X
-- 2.4 : add current slide to the next slide X
 
 3. get previous button working
 (copy of next button button just move slides 
