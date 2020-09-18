@@ -19,10 +19,7 @@ let widthArr = [];
 
 
 function positionSlides(amountOfSlides = 0, currentSlideWidth) {
-    /*Variables */
-    
 
-    /*position slides */
     for(let i = 1; i < amountOfSlides; i+=1) {
         allSlides[i].style.transform = `translateX(${currentSlideWidth * i}px)`;
         widthArr.push(currentSlideWidth * i);
@@ -31,43 +28,52 @@ function positionSlides(amountOfSlides = 0, currentSlideWidth) {
 
 positionSlides(allSlides.length, currentSlideWidth);
 
+let init = 0;
 
-
-
-// function changeToPreviousSlide(event) {
-//     console.log(event.target);
-//     let previousSlideValue = parseFloat(previousSlide.style.transform.match(digitAndDotRegex));
-//     console.log(previousSlideValue);
-// }
-
-// previousBtn.addEventListener('click', changeToPreviousSlide);
-
-let initNext = 0;
-function changeToNextSlide(event) {
-    // console.log(event.target);
-    
-
-    let nextSlideValue = parseFloat(nextSlide.style.transform.match(digitAndDotRegex));
-    
-
+function changeToPreviousSlide(event) {
+    let previousSlideWidth = -widthArr[init];
     // change slide
-    // slides.style.transform(`translateX(${nextSlideValue}`);
-    slides.style.transform = `translateX(${-widthArr[initNext]}px)`;
+    slides.style.transform = `translateX(${previousSlideWidth}px)`;
     
-    // update currentSlide class
-        // remove currentSlide class from all classes
-        allSlides.forEach(slide => slide.classList.remove("current-slide"));         
-        
-        // add currentSlide class to the current slide
-        nextSlide.classList.add("current-slide");
+    // add to the init value
+    if(isNaN(previousSlideWidth) === true) {
+        init+=0;
+    } else {
+        init-=1;
+    }
+    
+    console.log(previousSlideWidth);
+    
+    console.log(init);   
+}
 
-    // add to the initNext value
-    initNext+=1;
-    console.log(-widthArr[initNext]);
+
+
+
+
+
+
+function changeToNextSlide(event) {
+    // let nextSlideValue = parseFloat(nextSlide.style.transform.match(digitAndDotRegex));
+    let nextSlideWidth = -widthArr[init];
+    // change slide
+    slides.style.transform = `translateX(${nextSlideWidth}px)`;
     
-    console.log(initNext);   
+    // add to the init value
+    if(isNaN(nextSlideWidth) === true) {
+        init+=0;
+    } else {
+        init+=1;
+    }
+    
+    console.log(nextSlideWidth);
+    
+    console.log(init);   
 }       
 
+
+
+previousBtn.addEventListener('click', changeToPreviousSlide);
 nextBtn.addEventListener('click', changeToNextSlide);
 
 
@@ -79,15 +85,7 @@ OR get transform: translateX(2714px); from next slides html
 and use that
 
 Current problem:
-- Move by current slide width * amount of slides that come before it / after
-1. get current slide
-2. from current slide the amount of previous slides
-2.5 from current slide get amount of next slides
-2.7 save set 2  & 2.5 to variables
-2.8 calculate step 2 on click of the prev / next button
-3. transform:translateX(- slides(ul) * amountOfPrev/next slides)
-    - current slide --> used to count
-amount of slides before / after current slide 
+- 
 
 ---
 1. position slides left to right X
@@ -96,16 +94,13 @@ amount of slides before / after current slide
 previous slide times its number(eg: 2nd slide) X
 - 1.3 Hide all slides that are not the current slide from view X
 
-2. get next button working
-- 2.1 : get current slide + NextElement X
-- 2.2 : transform:translate(by currentImage width)
-- 2.3 : remove current-slide all images
-- 2.4 : add current slide to the next slide
+2. get next button working X
+- 2.1 : get current slide + NextElement X 
+- 2.2 : transform:translate(by currentImage width) X
+- 2.3 : remove current-slide all images X
+- 2.4 : add current slide to the next slide X
 
 3. get previous button working
-- 3.1 : listen for a click on the previous button
-- 3.2 : get current slide + previousElement
-- 3.3 : transform:translate(by currentImage width)
-- 3.4 : remove current-slide all images
-- 3.5 : add current slide to the next slide
+(copy of next button button just move slides 
+in opposite direction of the next button)
 */
