@@ -42,17 +42,17 @@ positionSlides(allSlides.length, currentSlideWidth);
 
 // previousBtn.addEventListener('click', changeToPreviousSlide);
 
-
+let initNext = 0;
 function changeToNextSlide(event) {
     // console.log(event.target);
-    let init = 0;
+    
 
     let nextSlideValue = parseFloat(nextSlide.style.transform.match(digitAndDotRegex));
     
 
     // change slide
     // slides.style.transform(`translateX(${nextSlideValue}`);
-    slides.style.transform = `translateX(${-widthArr[init]}px)`;
+    slides.style.transform = `translateX(${-widthArr[initNext]}px)`;
     
     // update currentSlide class
         // remove currentSlide class from all classes
@@ -61,14 +61,15 @@ function changeToNextSlide(event) {
         // add currentSlide class to the current slide
         nextSlide.classList.add("current-slide");
 
-    // add to the init value
-    init+=1;
-    console.log(-widthArr[init]);
+    // add to the initNext value
+    initNext+=1;
+    console.log(-widthArr[initNext]);
     
-    console.log(init);   
+    console.log(initNext);   
 }       
 
 nextBtn.addEventListener('click', changeToNextSlide);
+
 
 
 
