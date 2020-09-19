@@ -1,11 +1,12 @@
 /*Global variables */
 let allSlides = Array.from($(".slide"));
 let slides = document.querySelector(".slides");
-let previousBtn = document.querySelector('.previous-btn');
-let nextBtn = document.querySelector('.next-btn');
 
 let currentSlide = document.querySelector('.current-slide');
 let currentSlideWidth = currentSlide.getBoundingClientRect().width;
+
+let previousBtn = document.querySelector('.previous-btn');
+let nextBtn = document.querySelector('.next-btn');
 
 let digitAndDotRegex = /[\d.]+/g;
 let widthArr = [0];
@@ -31,34 +32,43 @@ positionSlides(allSlides.length, currentSlideWidth);
 let count = 0;
 
 function moveSlides(event) {
-    let closestButton = event.target.closest("button");
-    // let slideWidth = -widthArr[count];
-    // counting logic
+        let closestButton = event.target.closest("button");
 
-        // prev slides stuff
-        if(count > 0) { 
-            if(closestButton === previousBtn) {
-            count--;
+        // prev slides decrement / go to previous slide
+            if(count > 0) { 
+                if(closestButton === previousBtn) {
+                count--;
 
+            }
         }
-    }
 
-
-        // next slides stuff
-        if(count < allSlides.length -1) { 
-            if(closestButton === nextBtn) {
-            count++;
- 
-        }
-    }
-
-    count+=0;
+        // next slides increment / go to next slide
+            if(count < allSlides.length -1) { 
+                if(closestButton === nextBtn) {
+                count++;
     
-    // change slide
-    slides.style.transform = `translateX(${-widthArr[count]}px)`;
+            }
+        }
+        count+=0;
 
-    console.log(count);
-    console.log(-widthArr[count]);
+
+        // change slide in DOM
+        slides.style.transform = `translateX(${-widthArr[count]}px)`;
+
+        
+        // hide preview button
+        if(count === 0 || count === -0) {
+            previousBtn.setAttribute("hidden", true);
+        } else {
+            previousBtn.removeAttribute("hidden");
+        }
+    
+        // if equal to length of widthArr remove next button 
+        if(count === widthArr.length - 1) {
+            nextBtn.setAttribute("hidden", true);
+        } else {
+            nextBtn.removeAttribute("hidden");
+        }
     }
 
 
@@ -68,17 +78,3 @@ function moveSlides(event) {
 /*Event Listener */
 previousBtn.addEventListener('click', moveSlides);
 nextBtn.addEventListener('click', moveSlides);
-
-
-
-
-
-/* 
----
-STEPS
-1. position slides left to right X
-
-2. get next button working X
-
-3. get previous button working X
-*/

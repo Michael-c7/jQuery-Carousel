@@ -7,14 +7,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="master.css">
     
-    <title>jQuery Carousel</title>
+    <title>Carousel (that uses a little jQuery)</title>
 </head>
 <body>
     <div class="container">
         <div class="carousel-container">
-            <button class="previous-btn btn">
+            
+            <button class="previous-btn btn" hidden>
                 <i class="fa fa-angle-left fa-5x"></i>
-            </button>            
+            </button>    
+
         <div class="carousel">
             <ul class="slides">
                 <li class="slide current-slide">
@@ -39,7 +41,6 @@
             </ul>
         </div>
             
-
             <button class="next-btn btn">
                 <i class="fa fa-angle-right fa-5x"></i>
             </button>
