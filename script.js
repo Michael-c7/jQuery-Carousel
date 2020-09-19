@@ -28,7 +28,7 @@ function positionSlides(amountOfSlides = 0, currentSlideWidth) {
 
 positionSlides(allSlides.length, currentSlideWidth);
 
-console.log(widthArr)
+console.log(widthArr);
 
 
 let init = 0;
@@ -36,76 +36,112 @@ let init = 0;
 
 // console.log(slideWidth)
 
-function changeToPreviousSlide(event) {
+// function changeToPreviousSlide(event) {
 
-    // let previousSlideWidth = -widthArr[init];
-    let slideWidth = -widthArr[init];
-
-    // change slide
-    slides.style.transform = `translateX(${slideWidth}px)`;
-    init--;
-    // add to the init value
-    if(isNaN(slideWidth) === true || isNaN(init) === true) {
-        init+=0;
-    } else {
-        init-=1;
-    }
-
-    if(slideWidth === -1) {
-        init === 0;
-    }
-
-
-    console.log(slideWidth);
-    
-    console.log(init);   
-}
-
-
-
-
-function changeToNextSlide(event) {
-    // let nextSlideValue = parseFloat(nextSlide.style.transform.match(digitAndDotRegex));
-    // let nextSlideWidth = -widthArr[init];
-    let slideWidth = -widthArr[init];
+        // let previousSlideWidth = -widthArr[init];
+    // let slideWidth = -widthArr[init];
 
     // change slide
-    slides.style.transform = `translateX(${slideWidth}px)`;
+    // slides.style.transform = `translateX(${slideWidth}px)`;
+    // init--;
+    // add to the init value
+//     if(isNaN(slideWidth) === true || isNaN(init) === true) {
+//         init+=0;
+//     } else {
+//         init-=1;
+//     }
+
+//     if(slideWidth === -1) {
+//         init === 0;
+//     }
+
+
+//     console.log(slideWidth);
+    
+//     console.log(init);   
+// }
+
+
+
+
+// function changeToNextSlide(event) {
+        // let nextSlideValue = parseFloat(nextSlide.style.transform.match(digitAndDotRegex));
+        // let nextSlideWidth = -widthArr[init];
+    // let slideWidth = -widthArr[init];
+
+    // change slide
+    // slides.style.transform = `translateX(${slideWidth}px)`;
     
     // add to the init value
-    if(isNaN(slideWidth) === true || isNaN(init) === true) {
-        init+=0;
-    } else {
-        init+=1;
+//     if(isNaN(slideWidth) === true || isNaN(init) === true) {
+//         init+=0;
+//     } else {
+//         init+=1;
+//     }
+
+//     if(init === slideWidth ) {
+//         init === 0;
+//     }
+    
+//     console.log(slideWidth);
+    
+//     console.log(init);   
+// }       
+
+
+/*previous slides test */
+    // console.log(allSlides.length);
+let count = 0;
+function moveSlides(event) {
+    let closestButton = event.target.closest("button");
+
+    // counting logic
+
+        // prev slides stuff
+        if(count > 0) { 
+            if(closestButton === previousBtn) {
+            count--;
+        }
+    }
+        // next slides stuff
+        if(count < allSlides.length) { 
+            if(closestButton === nextBtn) {
+            count++;
+        }
     }
 
-    if(init === slideWidth ) {
-        init === 0;
+    count+=0;
+    console.log(count);
+
     }
     
-    console.log(slideWidth);
     
-    console.log(init);   
-}       
-
+     
+    
 
 
 /*Event Listener */
-previousBtn.addEventListener('click', changeToPreviousSlide);
-nextBtn.addEventListener('click', changeToNextSlide);
+previousBtn.addEventListener('click', moveSlides);
+nextBtn.addEventListener('click', moveSlides);
 
 
+/* TODO
+When do we want to iterate the count variable?
+- keep in 0 - 4 range 
+if it hits 0 or 4 can still iterate up or down 
+provided its going in the range
 
+*/
 
 
 /* 
 Known Bugs:(most severe to least severe)
 
 1. previous button broken(delayed)
+
 2. when you get to the very end
 of the previous slide & the next slide
 clicking buttons no longer move the slides
-
 
 ---
 STEPS
